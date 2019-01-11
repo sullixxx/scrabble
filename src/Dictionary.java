@@ -54,9 +54,9 @@ public class Dictionary {
                 buffLetter++;
             }
         }
-        if (buffLetter == word.length())
+        if (buffLetter == word.length()) {
             return true;
-        else if (findValueInShortTable(letters,'*')){
+        } else if (findValueInShortTable(letters,'*')){
             int nbJoker = numberOfJoker(letters);
             if (buffLetter == word.length() - nbJoker)
                 return true;
@@ -84,16 +84,17 @@ public class Dictionary {
             }
         return false;
     }
+
     public int numberOfJoker(char[] table){
-        int count = 0;
+        int nbJoker = 0;
         for (char c : table)
             if (c == '*')
-                count = count + 1;
-        return count;
+                nbJoker += 1;
+        return nbJoker;
     }
-    public LinkedList<String> getWordsThatCanBeComposed(char[] letters){
-        LinkedList<String> possibleWord = new LinkedList<String>();
 
+    public LinkedList<String> getWordsThatCanBeComposed(char[] letters){
+        LinkedList<String> possibleWord = new LinkedList<>();
         for (String word : wordList) {
             if (mayBeComposed(word, letters)) {
                 if(word.length()>=2 & isValidWord(word)) {

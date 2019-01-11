@@ -3,13 +3,12 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ScrabbleConsole {
-
     private ScrabbleConsole(){
         System.out.println("Welcome to the Scrabble assistant!");
         try {
-            Dictionary dictionary = new Dictionary("fr_FR_utf8.dico");//fait appel au dico par le biais de son chemin
+            Dictionary dictionary = new Dictionary("fr_FR_utf8.dico");//création d'un objet dico
             System.out.println("Please enter a letter list : ");
-            //Récupère les lettres entrées et transforme la chaine en tableau de caractères
+            //Récupération de la saisie et transformation de la chaine en tableau de caractères
             Scanner scan = new Scanner(System.in);
             String inputUser = scan.next();
             inputUser=inputUser.toLowerCase();
