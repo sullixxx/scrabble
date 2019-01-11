@@ -8,8 +8,6 @@ public class ScrabbleConsole {
         System.out.println("Welcome to the Scrabble assistant!");
         try {
             Dictionary dictionary = new Dictionary("fr_FR_utf8.dico");//fait appel au dico par le biais de son chemin
-            String word = "cap";
-            dictionary.isValidWord(word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase());//vérifie la présence du mot ou non dans le dictionnaire avec la bonne mise en forme des casses
             System.out.println("Please enter a letter list : ");
             //Récupère les lettres entrées et transforme la chaine en tableau de caractères
             Scanner scan = new Scanner(System.in);

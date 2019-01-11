@@ -41,11 +41,10 @@ public class Dictionary {
     public boolean mayBeComposed(String word, char[] letters) {
         word = replaceFrenchCharacter(word);
         LinkedList<Character> listLetters = new LinkedList<Character>();
-        for (char c : letters)
+        for (char c : letters) {
             listLetters.add(c);
-
+        }
         char[] wordSplit = word.toCharArray();
-
         // Buffer pour parcourir le tableau contenant les lettres du mots à valider
         int buffLetter = 0;
         int buffWordSplit;
@@ -92,17 +91,16 @@ public class Dictionary {
                 count = count + 1;
         return count;
     }
-
     public LinkedList<String> getWordsThatCanBeComposed(char[] letters){
         LinkedList<String> possibleWord = new LinkedList<String>();
 
         for (String word : wordList) {
             if (mayBeComposed(word, letters)) {
-                if(word.length()>=2)
+                if(word.length()>=2 & isValidWord(word)) {
                     possibleWord.add(word);
+                }
             }
         }
-
         return possibleWord;
     }
 
