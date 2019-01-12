@@ -78,18 +78,21 @@ public class Dictionary {
     }
 
     public Boolean findValueInShortTable(char[] table, char value){
-        for (char c : table)
+        for (char c : table) {
             if (c == value) {
                 return true;
             }
+        }
         return false;
     }
 
     public int numberOfJoker(char[] table){
         int nbJoker = 0;
-        for (char c : table)
-            if (c == '*')
+        for (char c : table) {
+            if (c == '*') {
                 nbJoker += 1;
+            }
+        }
         return nbJoker;
     }
 

@@ -14,10 +14,10 @@ public class ScrabbleGUI implements ActionListener {
     private JPanel bottomPanel;
 
     public ScrabbleGUI(){
-        JFrame frame = new JFrame("Scrabble GUI");
-        frame.setMinimumSize(new Dimension(640,480));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(2,1));
+        JFrame frame = new JFrame("Scrabble GUI"); //nouvelle fenêtre principale
+        frame.setMinimumSize(new Dimension(640,480)); //taille de la fenêtre
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// fermeture via bouton close
+        frame.setLayout(new GridLayout(2,1)); //disposition en 2 lignes 1 colonne
 
         JPanel topPanel = new JPanel();
         tfInputUser = new JTextField(20);
@@ -43,19 +43,14 @@ public class ScrabbleGUI implements ActionListener {
         frame.setVisible(true);
 
         try {
-            dico = new Dictionary("src/fr_FR_utf8.dico");
+            dico = new Dictionary("fr_FR_utf8.dico");
         }
         catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "fr_FR_utf8.dico (aucun fichier trouvé) ", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(-1);
         }
 
     }
-
-    public static void main(String[] args) {
-        new ScrabbleGUI();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("search")){
@@ -80,6 +75,10 @@ public class ScrabbleGUI implements ActionListener {
             }
         }
     }
+    public static void main(String[] args) {
+        new ScrabbleGUI();
+    }
+
 //    Exception
 //    try { /* ... */ } catch (Exception ex) {
 //        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

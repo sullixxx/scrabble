@@ -16,9 +16,9 @@ public class ScrabbleConsole {
 
             LinkedList<String> result = dictionary.getWordsThatCanBeComposed(letters);
             if (result.size() >= 1) {
-                System.out.println("There are " + result.size() + " matching words found : " + result);
+                System.out.println(result.size() + " matching word(s) found : " + result);
             }else {
-                System.out.println("No word matches with the following letter list : " + inputUser + ".");
+                System.out.println("0 matching word(s) found : []");
             }
         }catch (FileNotFoundException e){
             System.err.println(e.getMessage());
