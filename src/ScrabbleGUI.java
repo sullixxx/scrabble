@@ -7,37 +7,39 @@ import java.util.LinkedList;
 public class ScrabbleGUI implements ActionListener {
 
     private Dictionary dico;
-    private JTextField inputTextField;
+    private JTextField letterTextField;
     private JButton btnSearch;
-    private JTextArea searchResult;
+    private JTextArea wordlistTextArea;
 
-    private JPanel bottomPanel= new JPanel();// container du bas;
     private JPanel topPanel = new JPanel();// container du haut
+    private JPanel centerPanel = new JPanel();// container du bas;
     JScrollPane scroll;
 
     public ScrabbleGUI(){
         JFrame frame = new JFrame("Scrabble GUI"); //nouvelle fenêtre principale
-        //frame.setLocationRelativeTo(null);//positionnement au centre
-        frame.setResizable(false);
-        frame.setMinimumSize(new Dimension(640,480)); //taille de la fenêtre
+        frame.setResizable(true);
+        //frame.setMinimumSize(new Dimension(640,480)); //taille de la fenêtre
+        frame.setSize(new Dimension(400,400)); //taille de la fenêtre
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// fermeture via bouton close
-        frame.setLayout(new GridLayout(2,1)); //disposition en 2 lignes 1 colonne
+        //frame.setLayout(new GridLayout(2,1)); //disposition en 2 lignes 1 colonne
+        //frame.setLayout(new FlowLayout());
+        frame.setLayout(new BorderLayout());
 
-        topPanel.setBackground(Color.CYAN);
-        inputTextField = new JTextField(20);
+        topPanel.setBackground(Color.DARK_GRAY);
+        letterTextField = new JTextField(20);
+        letterTextField.setHorizontalAlignment(JTextField.LEFT);
         btnSearch = new JButton("Search");
         btnSearch.setActionCommand("search");
         btnSearch.addActionListener(this);
-        topPanel.add(inputTextField);//on place le champ de saisie et le boutons search
+        topPanel.add(letterTextField);//on place le champ de saisie et le boutons search
         topPanel.add(btnSearch);
-        frame.add(topPanel);//on ajoute le container a la frame
+        frame.add(topPanel,BorderLayout.NORTH);//on ajoute le container a la frame
 
-        //bottomPanel.setBorder(BorderFactory.createTitledBorder("Possibles words"));
-        searchResult = new JTextArea(14,52);
-        //searchResult.setSelectionStart(0);
-        scroll = new JScrollPane(searchResult);
-        bottomPanel.add(scroll);
-        frame.add(bottomPanel);//on ajoute le container a la frame
+        //centerPanel.setBorder(BorderFactory.createTitledBorder("Possibles words"));
+        wordlistTextArea = new JTextArea(14,52);
+        scroll = new JScrollPane(wordlistTextArea);
+        centerPanel.add(scroll);
+        frame.add(centerPanel,BorderLayout.CENTER);//on ajoute le container a la frame
         frame.pack();
         frame.setVisible(true);
 
@@ -54,15 +56,15 @@ public class ScrabbleGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("search")){
             try {
-                if (inputTextField.getText().length() > 0){
-                    String userInput = inputTextField.getText().toLowerCase();
+                if (letterTextField.getText().length() > 0){
+                    String userInput = letterTextField.getText().toLowerCase();
                     char[] letters = userInput.toCharArray();
                     LinkedList<String> result = dico.getWordsThatCanBeComposed(letters);
                     for (String s: result) {
-                        searchResult.append(s+"\n");
+                        wordlistTextArea.append(s+"\n");
                     }
-                    //scroll.getVerticalScrollBar().setValue(0);
-                    bottomPanel.updateUI();
+                    wordlistTextArea.setCaretPosition(0);// retabli le curseur en haut afin d'afficher les premier resultats
+                    centerPanel.updateUI();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "textfield is empty", "Error", JOptionPane.ERROR_MESSAGE);
