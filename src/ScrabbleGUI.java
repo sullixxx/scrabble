@@ -60,10 +60,12 @@ public class ScrabbleGUI implements ActionListener {
                     String userInput = letterTextField.getText().toLowerCase();
                     char[] letters = userInput.toCharArray();
                     LinkedList<String> result = dico.getWordsThatCanBeComposed(letters);
+                    wordlistTextArea.setText("");
                     for (String s: result) {
                         wordlistTextArea.append(s+"\n");
                     }
                     wordlistTextArea.setCaretPosition(0);// retabli le curseur en haut afin d'afficher les premier resultats
+                    wordlistTextArea.setEditable(false);
                     centerPanel.updateUI();
                 }
                 else{
